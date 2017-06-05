@@ -1,0 +1,57 @@
+package projeto;
+
+import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+import org.jxmapviewer.viewer.DefaultWaypoint;
+import org.jxmapviewer.viewer.GeoPosition;
+
+public class SwingWaypoint extends DefaultWaypoint
+{
+    private final JButton button;
+    private final String text;
+
+    public SwingWaypoint(String text, GeoPosition coord)
+    {
+        super(coord);
+        this.text = text;
+        button = new JButton(text.substring(0, 1));
+        button.setSize(24, 24);
+        button.setPreferredSize(new Dimension(24, 24));
+        button.addMouseListener(new SwingWaypointMouseListener());
+        button.setVisible(true);
+    }
+
+    JButton getButton()
+    {
+        return button;
+    }
+    
+    private class SwingWaypointMouseListener implements MouseListener
+    {
+        public void mouseClicked(MouseEvent e)
+        {
+            JOptionPane.showMessageDialog(button, "Você clicou no " + text);
+        }
+        public void mousePressed(MouseEvent e)
+        {
+        	
+        }
+        public void mouseReleased(MouseEvent e)
+        {
+        	
+        }
+        public void mouseEntered(MouseEvent e)
+        {
+        	
+        }
+        public void mouseExited(MouseEvent e)
+        {
+        	
+        }
+    }
+}
